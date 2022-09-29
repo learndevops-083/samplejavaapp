@@ -56,7 +56,7 @@ pipeline {
         stage('push docker image') {
 	   steps {
 		withCredentials([string(credentialsId: 'DOCKER_HUB_PWD', variable: 'DOCKER_HUB_PWD')]) {
-                	sh "docker login -u lerndevops -p ${DOCKER_HUB_PWD}"
+                	sh "docker login -u joemile -p ${DOCKER_HUB_PWD}"
 			}
 		sh 'docker push lerndevops/samplejavaapp:$BUILD_NUMBER'
 		}

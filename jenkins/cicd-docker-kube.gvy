@@ -4,7 +4,7 @@ pipeline {
         stage('compile') {
 	   steps {
                 echo 'compiling..'
-		git url: 'https://github.com/lerndevops/samplejavaapp'
+		git url: 'https://github.com/learndevops-083/samplejavaapp'
 		sh script: '/opt/maven/bin/mvn compile'
            }
         }
@@ -50,7 +50,7 @@ pipeline {
         stage('build docker image') {
 	   steps {
 	        sh 'cd $WORKSPACE'
-		sh 'docker build --file Dockerfile --tag lerndevops/samplejavaapp:$BUILD_NUMBER .'
+		sh 'docker build --file Dockerfile --tag joemile/samplejavaapp:$BUILD_NUMBER .'
             }	
         }
         stage('push docker image') {

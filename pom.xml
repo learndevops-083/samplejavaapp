@@ -499,6 +499,21 @@
                 </plugins>
             </reporting>
         </profile>
+	<profiles>
+	<profile>
+                <id>sonar</id>
+                <activation>
+                        <activeByDefault>true</activeByDefault>
+                 
+		</activation>
+		<properties>
+                      <!—the url path for your sonarqube server —>
+		     <sonar.host.url>
+	                  http://15.204.172.230:9000
+                       </sonar.host.url>
+                  </properties>
+            </profile>		
+      
     </profiles>
 
 </project>

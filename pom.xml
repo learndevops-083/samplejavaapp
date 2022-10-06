@@ -499,7 +499,6 @@
                 </plugins>
             </reporting>
         </profile>
-	<profiles>
 	<profile>
                 <id>sonar</id>
                 <activation>

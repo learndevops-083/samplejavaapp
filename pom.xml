@@ -499,7 +499,7 @@
                 </plugins>
             </reporting>
         </profile>
-	<profile>
+	 <profile>
                 <id>sonar</id>
                 <activation>
                         <activeByDefault>true</activeByDefault>
@@ -511,8 +511,7 @@
 	                  http://15.204.172.230:9000
                        </sonar.host.url>
                   </properties>
-            </profile>		
-      
+          </profile>		
     </profiles>
 
 </project>

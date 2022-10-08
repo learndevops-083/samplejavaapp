@@ -1,0 +1,17 @@
+---
+- hosts: qa
+  become: yes
+  tasks:
+       - name: "pull docker image"
+         community.docker.docker_image:
+            name: learndevops083/samplejavaapp:3
+            source: pull
+       - name: Run Docker container using simple-docker-image
+         docker_container:
+            name: samplejavaapp
+            image: learndevops083/samplejavaapp:3
+            state: started
+            recreate: yes
+            detach: true
+            ports:
+              - "8888:8080"

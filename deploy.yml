@@ -4,12 +4,12 @@
   tasks:
        - name: "pull docker image"
          community.docker.docker_image:
-            name: learndevops083/samplejavaapp:3
+            name: learndevops083/samplejavaapp:latest
             source: pull
        - name: Run Docker container using simple-docker-image
          docker_container:
             name: samplejavaapp
-            image: learndevops083/samplejavaapp:3
+            image: learndevops083/samplejavaapp:latest
             state: started
             recreate: yes
             detach: true

@@ -6,6 +6,7 @@
          community.docker.docker_image:
             name: learndevops083/samplejavaapp:latest
             source: pull
+            become: yes
        - name: Run Docker container using simple-docker-image
          docker_container:
             name: samplejavaapp
@@ -15,3 +16,4 @@
             detach: true
             ports:
               - "8888:8080"
+            become: yes

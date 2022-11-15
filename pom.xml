@@ -39,7 +39,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-    </repositories>
+    </repositories>	
 
     <pluginRepositories>
         <pluginRepository>
@@ -308,8 +308,8 @@
                             </executions>
                         </plugin>
 
-                </plugins>
-                <plugins>
+                
+                
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-enforcer-plugin</artifactId>

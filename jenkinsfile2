@@ -2,16 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('clone repository') {
+        stage('clone git') {
             steps {
                 git 'https://github.com/learndevops-083/samplejavaapp.git'
             }
         }
-        
-        stage('maven package') {
-            steps {
-                sh '/opt/maven/bin/mvn package'
+        stage('package'){
+            steps{
+                sh '/opt/maven/bin/mvn  package'
+            }
+            post {
+            success{
+                deploy adapters: [tomcat9(credentialsId: 'deployer-war', path: '', url: 'http://15.204.204.118:8081/')], contextPath: 'sampleapp', war: 'target/sampleapp.war'
             }
         }
+        }
+    
     }
-  }
+}

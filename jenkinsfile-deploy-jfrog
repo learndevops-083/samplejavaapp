@@ -1,0 +1,30 @@
+pipeline {
+    agent any 
+    stages {
+        stage('git clone') {
+            steps{
+                git 'https://github.com/learndevops-083/samplejavaapp.git'
+            }
+        }
+        stage('maven package') {
+            steps {
+                sh '/opt/maven/bin/mvn package'
+            }
+        }
+        stage('publish to jfrog') {
+            steps {
+                rtUpload (
+                    serverId: 'jfrog-dev',
+                          spec: '''{
+                           "files": [
+                             {
+                               "pattern": "target/sampleapp.war",
+                               "target": "generic-local/"
+                            }
+                        ]
+                    }'''
+                 )
+            }
+        }
+}
+}

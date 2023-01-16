@@ -30,16 +30,14 @@
     become: yes
   - name: Pull mywebpage image from dockerhub
     community.docker.docker_image:
-     name: learndevops083/samplejavaapp
+     name: learndevops083/sampleapp:1
      source: pull
     become: yes
-  - name: Run Docker container using simple-docker-image
+  - name: Create a docker container
     community.docker.docker_container:
-      name: samplejavaapp
-      image: learndevops083/samplejavaapp:latest
-      state: started
-      recreate: yes
-      detach: true
-      ports:
-       - "8888:8080"
-      become: yes
+     name: sampleapp
+     image: learndevops083/sampleapp:1
+     ports:
+      - "8000:8080"
+     container_default_behavior: compatibility
+    become: yes

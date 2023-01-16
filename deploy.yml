@@ -30,13 +30,13 @@
     become: yes
   - name: Pull mywebpage image from dockerhub
     community.docker.docker_image:
-     name: learndevops083/sampleapp
+     name: learndevops083/sampleapp:1
      source: pull
     become: yes
   - name: Create a docker container
     community.docker.docker_container:
      name: sampleapp
-     image: learndevops083/sampleapp
+     image: learndevops083/sampleapp:1
      ports:
       - "8000:8080"
      container_default_behavior: compatibility

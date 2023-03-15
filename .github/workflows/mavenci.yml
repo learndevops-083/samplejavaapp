@@ -39,7 +39,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v6
       name: Build & push Docker image
       with:
-        image: joemile/javaapp
+        image: learndevops083/javaapp
         tags: v1, latest
         registry: registry-url.io
         dockerfile: Dockerfile.ci

@@ -1,43 +1,40 @@
-- hosts: qa
+---
+- name: Pull docker image and deploy 
+  hosts: docker 
+  become: true
   tasks:
-  - name: Setting up yum repository for Docker
-    yum_repository:
-     name: docker
-     description: DOCKER YUM repo
-     file: docker_repo
-     baseurl: https://download.docker.com/linux/centos/8/$basearch/stable
-     enabled: 1
-     gpgcheck: 1
-     gpgkey: https://download.docker.com/linux/centos/gpg
-    become: yes
-  - name: Installing Docker
-    yum:
-      name:
-            - docker-ce
-            - docker-ce-cli
-            - containerd.io
-      state: present
-    become: yes
-  - name: Start docker service
-    service:
-     name: docker
-     state: started
-     enabled: yes
-    become: yes
-  - name: Install docker-py
-    pip:
-     name: docker-py
-    become: yes
-  - name: Pull mywebpage image from dockerhub
-    community.docker.docker_image:
-     name: learndevops083/sampleapp:1
-     source: pull
-    become: yes
-  - name: Create a docker container
-    community.docker.docker_container:
-     name: sampleapp
-     image: learndevops083/sampleapp:1
-     ports:
-      - "8000:8080"
-     container_default_behavior: compatibility
-    become: yes
+   - name: Install Docker
+     package:
+        name: docker-ce
+        state: present
+
+   - name: Start Docker service
+     systemd:
+        name: docker
+        state: started
+        enabled: yes
+   - name: Install pip
+     become: true
+     yum:
+        name: python3-pip
+        state: present
+
+   - name: Install Docker Python module
+     pip:
+        name: docker
+        state: present
+   - name: Pull  image from Docker
+     docker_image:
+        name: learndevops083/sampleapp:latest
+        source: pull
+        state: present
+
+   - name: Start Sampleimageapp container
+     docker_container:
+        name: mysampleapp
+        image: learndevops083/sampleapp:latest
+        ports:
+          - "8000:8080"
+        state: started
+        restart_policy: unless-stopped
+ 

@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  name: local
+  demands: maven
+
+steps:
+- task: Maven@3
+  displayName: 'Maven app/pom.xml'
+  inputs:
+    mavenPomFile: 'app/pom.xml'
+    codeCoverageToolOption: Cobertura
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.jar'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+- task: Docker@2
+    inputs:
+      containerRegistry: dockerhub
+      repository: 'learndevops083/sampleapp'
+      command: 'buildAndPush'
+      Dockerfile: 'Dockerfile'
+      buildContext: '$(Build.SourcesDirectory)'
+

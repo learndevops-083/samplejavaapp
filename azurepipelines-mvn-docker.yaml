@@ -28,7 +28,7 @@ steps:
     PathtoPublish: '$(build.artifactstagingdirectory)'
   condition: succeededOrFailed()
 - task: Docker@2
-    inputs:
+  inputs:
       containerRegistry: dockerhub
       repository: 'learndevops083/sampleapp'
       command: 'buildAndPush'

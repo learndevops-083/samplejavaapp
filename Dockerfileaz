@@ -1,1 +1,4 @@
-
+FROM tomcat:8.5.40
+COPY /Users/joemile/myagent/_work/3/a/target/sampleapp.war  /usr/local/tomcat/webapps
+EXPOSE 8080
+CMD /usr/local/tomcat/bin/catalina.sh run

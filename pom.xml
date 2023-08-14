@@ -176,11 +176,17 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+                <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-war-plugin</artifactId>
+                 <version>3.2.2</version> <!-- Use a compatible version here -->
+           </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.2.3.v20140905</version>
             </plugin>
+
 			
 						<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

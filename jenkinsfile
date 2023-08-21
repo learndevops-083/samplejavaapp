@@ -26,7 +26,7 @@ pipeline {
             	withSonarQubeEnv('sonarqube') {
                 	sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=maven-code-analysis"
             	}
-            	timeout(time: 4, unit: 'MINUTES') {
+            	timeout(time: 3, unit: 'MINUTES') {
                 	waitForQualityGate abortPipeline: true
             	}
         	  }

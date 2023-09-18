@@ -1,4 +1,4 @@
-FROM tomcat:8.5.40
+FROM tomcat:8.5.92
 COPY /target/sampleapp.war /usr/local/tomcat/webapps
 EXPOSE 8080
 CMD /usr/local/tomcat/bin/catalina.sh run

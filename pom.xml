@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <vaadin.version>8.0.0.alpha2</vaadin.version>
+        <vaadin.version>8.17.0</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
          
     </properties>
@@ -147,7 +147,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20140107</version>
+			<version>20230227</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

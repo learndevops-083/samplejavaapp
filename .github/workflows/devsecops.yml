@@ -1,5 +1,4 @@
-​​name: Build and Test Java App with Security Scans
-
+name: Build and Test Java App with Security Scans
 on:
   push:
     branches:

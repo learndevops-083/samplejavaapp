@@ -42,21 +42,22 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   Trivy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: security
-    name: Trivy Image Scan
+    name: Build Docker Image and scan with Trivy 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/learndevops083/my-app:${{ github.sha }} .
+          docker build -t --file Dockerfile learndevops083/my-app:${{ github.sha }} .
 
+       
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/learndevops083/my-app:${{ github.sha }}'
+          image-ref: 'learndevops083/my-app:${{ github.sha }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true

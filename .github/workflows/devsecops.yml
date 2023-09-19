@@ -45,16 +45,18 @@ jobs:
     needs: security
     name: Build Docker Image and scan with Trivy 
     steps:
-      -
-        name: Set up QEMU
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-      -
-        name: Set up Docker Buildx
+        
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t learndevops083/myjava-app:${{ github.sha }}   -f samplejavaapp/Dockerfile . 
+          docker build -t learndevops083/myjava-app:${{ github.sha }}   -f Dockerfile . 
        
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master

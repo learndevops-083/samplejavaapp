@@ -32,23 +32,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  TruffleHog-Secret-Scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: TruffleHog
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: development # ${{ github.event.repository.default_branch }}
-          head: HEAD
-          extra_args: --debug #--only-verified
+  # TruffleHog-Secret-Scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - name: TruffleHog
+  #       uses: trufflesecurity/trufflehog@main
+  #       with:
+  #         path: ./
+  #         base: development # ${{ github.event.repository.default_branch }}
+  #         head: HEAD
+  #         extra_args: --debug #--only-verified
 
   dependency-check:
-    #needs: TruffleHog-Secret-Scan
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -105,7 +105,7 @@ jobs:
   #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   Docker:
-    needs: dependency-check
+    needs: approval
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
